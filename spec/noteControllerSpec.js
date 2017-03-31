@@ -98,6 +98,20 @@ function  noteControllerInsertsHtmlForSingleNote() {
   }
 }
 
+function noteControllerLoadsCorrectIdFromUrl() {
+  var noteList = new NoteList();
+  var noteController = new NoteController(noteList);
+  function DummyLocation() {
+    this.hash = "#notes/1";
+  }
+  var dummyLocation = new DummyLocation();
+  try {
+    new Assert( noteController.getNoteIdFromUrl(dummyLocation) === "1" , "ID not loaded from URL", "noteControllerLoadsCorrectIdFromUrl").isTrue();
+  }
+  catch(err) {
+    console.log(err.message);
+  }
+}
 
 
 
@@ -107,3 +121,4 @@ noteControllerAddsNoteToNoteList();
 noteControllerCreatesNoteListView();
 noteControllerInsertsHtmlForNoteList();
 noteControllerInsertsHtmlForSingleNote();
+noteControllerLoadsCorrectIdFromUrl();

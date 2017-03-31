@@ -20,8 +20,9 @@
     element.innerHTML = view.generateHTML();
   };
 
-
-
+  NoteController.prototype.getNoteIdFromUrl = function(location) {
+    return location.hash.split("/")[1];
+  };
 
   exports.NoteController = NoteController;
 
