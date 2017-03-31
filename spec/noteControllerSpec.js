@@ -113,6 +113,18 @@ function noteControllerLoadsCorrectIdFromUrl() {
   }
 }
 
+function noteControllerFindsNoteById() {
+  var noteList = new NoteList();
+  var noteController = new NoteController(noteList);
+  noteController.addNote("Favourite drink: gin", 1);
+  var note = noteController.noteList._notes[0];
+  try {
+    new Assert( noteController.getNoteById(1) === note , "Can't get note", "noteControllerFindsNoteById").isTrue();
+  }
+  catch(err) {
+    console.log(err.message);
+  }
+}
 
 
 noteControllerCanBeInstantiated ();
@@ -122,3 +134,4 @@ noteControllerCreatesNoteListView();
 noteControllerInsertsHtmlForNoteList();
 noteControllerInsertsHtmlForSingleNote();
 noteControllerLoadsCorrectIdFromUrl();
+noteControllerFindsNoteById();

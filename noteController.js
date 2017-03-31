@@ -24,6 +24,10 @@
     return location.hash.split("/")[1];
   };
 
+  NoteController.prototype.getNoteById = function (id) {
+    return this.noteList._notes[id - 1];
+  };
+
   exports.NoteController = NoteController;
 
 })(this);
