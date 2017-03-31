@@ -6,8 +6,6 @@ controller.addNote("Hello!!");
 console.log(controller.noteList);
 
 controller.addNote("How's it going?!!");
-controller.addNote("Hi?!!");
+controller.addNote("Hi!");
 
-controller.addHTML();
-
-controller.makeUrlChangeShowNoteForCurrentPage();
+controller.addListHTML();

@@ -11,30 +11,16 @@
     this.noteList.createNote(text);
   };
 
-  NoteController.prototype.addHTML = function(element = document.getElementById("noteList")) {
-    var element = element;
+  NoteController.prototype.addListHTML = function(element = document.getElementById("noteList")) {
     element.innerHTML = this.view.generateHTML();
   };
 
-
-
-  NoteController.prototype.makeUrlChangeShowNoteForCurrentPage = function() {
-    window.addEventListener("hashchange", this.showNoteForCurrentPage());
+  NoteController.prototype.getHTMLForSingleNote = function (note, element) {
+    var view = new SingleNoteView(note);
+    element.innerHTML = view.generateHTML();
   };
 
-  NoteController.prototype.showNoteForCurrentPage = function() {
-    this.showNote(this.getNoteFromUrl(window.location));
-  };
 
-  NoteController.prototype.getNoteFromUrl = function(location) {
-    return location.hash.split("#")[1];
-  };
-
-  NoteController.prototype.showNote = function(note) {
-    document
-      .getElementById("app")
-      .innerHTML = note;
-  };
 
 
   exports.NoteController = NoteController;

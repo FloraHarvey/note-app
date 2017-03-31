@@ -69,15 +69,29 @@ function noteControllerCreatesNoteListView () {
   }
 }
 
-function noteControllerInsertsHtml () {
+function noteControllerInsertsHtmlForNoteList () {
   var noteListDouble = new NoteListDouble();
   var controller = new NoteController(noteListDouble);
   var divDouble = new HTMLDouble();
   controller.view = new ViewDouble(noteListDouble);
-  controller.addHTML(divDouble);
+  controller.addListHTML(divDouble);
 
   try {
-    new Assert(divDouble.innerHTML, "HTML not added to page", "noteControllerInsertsHtml", "html").isEqual();
+    new Assert(divDouble.innerHTML, "HTML not added to page", "noteControllerInsertsHtmlForNoteList", "html").isEqual();
+  }
+  catch(err) {
+    console.log(err.message);
+  }
+}
+
+function  noteControllerInsertsHtmlForSingleNote() {
+  var noteList = new NoteList();
+  var noteController = new NoteController(noteList);
+  var elementDiv = function() {};
+  var note = new Note('To do: buy eggs');
+  noteController.getHTMLForSingleNote(note, elementDiv);
+  try {
+    new Assert(elementDiv.innerHTML === "<div>To do: buy eggs</div>" , "Can't display a note", "noteControllerInsertsHtmlForSingleNote").isTrue();
   }
   catch(err) {
     console.log(err.message);
@@ -85,8 +99,11 @@ function noteControllerInsertsHtml () {
 }
 
 
+
+
 noteControllerCanBeInstantiated ();
 noteControllerSavesNotelist ();
 noteControllerAddsNoteToNoteList();
 noteControllerCreatesNoteListView();
-noteControllerInsertsHtml();
+noteControllerInsertsHtmlForNoteList();
+noteControllerInsertsHtmlForSingleNote();
